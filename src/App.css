@@ -1,0 +1,35 @@
+.App {
+  align-items: center;
+  text-align: center;
+}
+.button {
+  margin: 10px;
+}
+.row {
+  display: flex;
+  justify-content: center;
+}
+.piece {
+  height: 7vw;
+  width: 7vw;
+  background-color: blue;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  border-radius: 50%;
+  background-color: white;
+  height: 6vw;
+  width: 6vw;
+}
+
+.USER {
+  background-color: yellow;
+}
+
+.CPU {
+  background-color: red;
+}
