@@ -1,15 +1,16 @@
 import React from "react";
 
 const GameColumn = (props) => {
-  const columnIndex = props.columnIndex;
-  const updateBoard = props.updateBoard;
+  const { columnIndex, updateBoard, columns } = props;
   let pieceStatus = "free";
 
-  if (columnIndex.player === 1) {
+  if (columns.player === 1) {
     pieceStatus = "USER";
-  } else if (columnIndex.player === 2) {
+  } else if (columns.player === 2) {
     pieceStatus = "CPU";
   }
+  // console.log(`GameColumn: ${columnIndex}`);
+  // console.log(`current Player: ${pieceStatus}`);
 
   return (
     <div>
