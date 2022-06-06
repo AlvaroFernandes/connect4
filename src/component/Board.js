@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import GameRow from "./GameRow";
@@ -31,10 +31,9 @@ const Board = () => {
     let areColumnsFilled = true;
     for (let i = 5; i >= 0; i--) {
       let columnPlayer = boardCopy.rows[i].columns[columnIndex].player;
-      // console.log(columnPlayer);
+
       if (!columnPlayer) {
         boardCopy.rows[i].columns[columnIndex].player = currentPlayer;
-        // console.log(currentPlayer);
         rowIndex = i;
         areColumnsFilled = false;
         break;
@@ -46,7 +45,14 @@ const Board = () => {
     }
     if (gameStatus(rowIndex, columnIndex, boardCopy)) {
       setBoard(initialBoard);
-      toast(`Player ${currentPlayer} wins`);
+      let playerName = "";
+      if (currentPlayer === 1) {
+        playerName = "User";
+      }
+      if (currentPlayer === 2) {
+        playerName = "Computer";
+      }
+      toast(`Player ${playerName} wins`);
       setCurrentPlayer(1);
     } else {
       if (checkDraw(boardCopy)) {
@@ -66,10 +72,16 @@ const Board = () => {
     );
   };
 
+  useEffect(() => {
+    if (currentPlayer === 2) {
+      const CPUMove = Math.floor(Math.random() * 6 + 1);
+      updateBoard(CPUMove);
+    }
+  }, [currentPlayer, updateBoard]);
+
   return (
     <div>
       <ToastContainer />
-      <button className="button">New Game</button>
       {board.rows.map((row, i) => (
         <GameRow key={i} row={row} updateBoard={updateBoard} />
       ))}

@@ -9,8 +9,6 @@ const GameColumn = (props) => {
   } else if (columns.player === 2) {
     pieceStatus = "CPU";
   }
-  // console.log(`GameColumn: ${columnIndex}`);
-  // console.log(`current Player: ${pieceStatus}`);
 
   return (
     <div>
